@@ -1,11 +1,16 @@
 import logo from './logo.svg';
 import './Index.css';
+import Home from './pages/Home';
+import CanvasModel from './canvas';
+import Customizer from './pages/Customizer';
 
 function App() {
   return (
-    <div className='head-text'>
-      ReactApp
-    </div>
+    <main className='app transition-all ease-in'>
+      <Home />
+      {/* <CanvasModel /> */}
+      <Customizer />
+    </main>
   );
 }
 
