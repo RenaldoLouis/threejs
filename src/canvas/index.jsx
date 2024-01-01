@@ -1,13 +1,18 @@
 import { Canvas } from '@react-three/fiber'
 import { Environment, Center } from '@react-three/drei';
-
+import React from 'react'
+import { useLoader } from 'react-three-fiber';
+import CameraRig from './CameraRig';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import Shirt from './Shirt';
 import Backdrop from './Backdrop';
-import CameraRig from './CameraRig';
 
 const CanvasModel = () => {
+  const obj = useLoader(OBJLoader, '/supastarOBJ.obj');
+
   return (
     <Canvas
+    id="scene"
       shadows
       camera={{ position: [0, 0, 0], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
@@ -21,6 +26,7 @@ const CanvasModel = () => {
         <Center>
           <Shirt />
         </Center>
+        {/* <primitive object={obj}/> */}
       </CameraRig>
     </Canvas>
   )
