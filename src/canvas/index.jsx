@@ -4,7 +4,7 @@ import React from 'react'
 import { useLoader } from 'react-three-fiber';
 import CameraRig from './CameraRig';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import Shirt from './Shirt';
+import VansShoe from './VansShoe';
 import Backdrop from './Backdrop';
 
 const CanvasModel = () => {
@@ -12,7 +12,7 @@ const CanvasModel = () => {
 
   return (
     <Canvas
-    id="scene"
+      id="scene"
       shadows
       camera={{ position: [0, 0, 0], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
@@ -21,10 +21,10 @@ const CanvasModel = () => {
       <ambientLight intensity={0.5} />
       <Environment preset="city" />
 
+      <Backdrop />
       <CameraRig>
-        <Backdrop />
         <Center>
-          <Shirt />
+          <VansShoe />
         </Center>
         {/* <primitive object={obj}/> */}
       </CameraRig>

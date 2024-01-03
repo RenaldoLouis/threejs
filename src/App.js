@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './Index.css';
 import Home from './pages/Home';
 import CanvasModel from './canvas';
