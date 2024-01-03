@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { Environment, Center } from '@react-three/drei';
-import React from 'react'
+import React, { useState } from 'react'
 import { useLoader } from 'react-three-fiber';
 import CameraRig from './CameraRig';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
@@ -8,7 +8,20 @@ import VansShoe from './VansShoe';
 import Backdrop from './Backdrop';
 
 const CanvasModel = () => {
-  const obj = useLoader(OBJLoader, '/supastarOBJ.obj');
+  // const obj = useLoader(OBJLoader, '/supastarOBJ.obj');
+  const [rotateValue, setRotateValue] = useState({ x: 0, y: 0 });
+
+  const handleOnClickObject = (e) => {
+    console.log("handleOnClickObject", e)
+  }
+
+  const handleDragObject = (e) => {
+    console.log("handleDragObject", e)
+    setRotateValue({
+      x: 5,
+      y: 5,
+    });
+  }
 
   return (
     <Canvas
@@ -22,9 +35,9 @@ const CanvasModel = () => {
       <Environment preset="city" />
 
       <Backdrop />
-      <CameraRig>
+      <CameraRig rotateValue={rotateValue}>
         <Center>
-          <VansShoe />
+          <VansShoe handleOnClickObject={handleOnClickObject} handleDragObject={handleDragObject} />
         </Center>
         {/* <primitive object={obj}/> */}
       </CameraRig>
