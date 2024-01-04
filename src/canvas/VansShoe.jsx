@@ -19,7 +19,7 @@ const VansShoe = (props) => {
   const stateString = JSON.stringify(snap);
 
   return (
-    <group key={stateString} onClick={(e) => handleOnClickObject(e)} onPointerDown={e => handleDragObject(e)}>
+    <group key={stateString} onPointerDown={e => handleDragObject(e)}>
       <mesh
         castShadow
         geometry={nodes.Shoe_VansShoeMaterial_0.geometry}

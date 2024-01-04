@@ -6,12 +6,15 @@ import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockCont
 
 import state from '../store';
 
-const CameraRig = ({ children }) => {
+const CameraRig = (props) => {
+
+  const { children, rotateValue } = props
+
   const group = useRef();
   const snap = useSnapshot(state);
 
   const [scrollValue, setScrollValue] = useState(8)
-  const [rotateValue, setRotateValue] = useState({ x: 0, y: 0 });
+  // const [rotateValue, setRotateValue] = useState({ x: 0, y: 0 });
 
   useFrame((state, delta) => {
     const isBreakpoint = window.innerWidth <= 1260;
@@ -29,45 +32,45 @@ const CameraRig = ({ children }) => {
     // Add scroll event listener
     window.addEventListener('wheel', handleScroll);
 
-    //To Rotate Object
-    // Variable to track mouse or touch movement
-    let lastMouseX = 0;
-    let lastMouseY = 0;
+    // //To Rotate Object
+    // // Variable to track mouse or touch movement
+    // let lastMouseX = 0;
+    // let lastMouseY = 0;
 
-    function onMouseDown(event) {
-      lastMouseX = event.clientX;
-      lastMouseX = event.clientY;
-      window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('mouseup', onMouseUp);
-    }
-
-    function onMouseMove(event) {
-      const deltaX = event.clientX - lastMouseX;
-      const deltaY = event.clientY - lastMouseY;
-      // rotateObject(delta);
-      setRotateValue({
-        x: deltaX,
-        y: deltaY,
-      });
-      lastMouseX = event.clientX;
-      lastMouseY = event.clientY;
-    }
-
-    function onMouseUp() {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
-    }
-
-    // // Function to rotate the object based on mouse movement
-    // function rotateObject(delta) {
-    //   // Adjust rotation speed based on mouse movement
-    //   const speed = 0.01;
-    //   // object.rotation.y += delta * speed; // Rotate the object on the Y-axis
-    //   setRotateValue(rotateValue + delta * speed)
+    // function onMouseDown(event) {
+    //   lastMouseX = event.clientX;
+    //   lastMouseX = event.clientY;
+    //   window.addEventListener('mousemove', onMouseMove);
+    //   window.addEventListener('mouseup', onMouseUp);
     // }
 
-    // Add mouse down event listener
-    window.addEventListener('mousedown', onMouseDown);
+    // function onMouseMove(event) {
+    //   const deltaX = event.clientX - lastMouseX;
+    //   const deltaY = event.clientY - lastMouseY;
+    //   // rotateObject(delta);
+    //   setRotateValue({
+    //     x: deltaX,
+    //     y: deltaY,
+    //   });
+    //   lastMouseX = event.clientX;
+    //   lastMouseY = event.clientY;
+    // }
+
+    // function onMouseUp() {
+    //   window.removeEventListener('mousemove', onMouseMove);
+    //   window.removeEventListener('mouseup', onMouseUp);
+    // }
+
+    // // // Function to rotate the object based on mouse movement
+    // // function rotateObject(delta) {
+    // //   // Adjust rotation speed based on mouse movement
+    // //   const speed = 0.01;
+    // //   // object.rotation.y += delta * speed; // Rotate the object on the Y-axis
+    // //   setRotateValue(rotateValue + delta * speed)
+    // // }
+
+    // // Add mouse down event listener
+    // window.addEventListener('mousedown', onMouseDown);
 
     // set the initial position of the model
     let targetPosition = [-0.4, 0, scrollValue];

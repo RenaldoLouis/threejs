@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
 import { AccumulativeShadows, RandomizedLight } from '@react-three/drei';
 
-const Backdrop = () => {
+const Backdrop = React.memo(({ propA, propB }) => {
   const shadows = useRef();
 
   return (
     <AccumulativeShadows
+      key="backdrop"
       ref={shadows}
       temporal
       frames={60}
@@ -30,6 +31,6 @@ const Backdrop = () => {
       />
     </AccumulativeShadows>
   )
-}
+});
 
 export default Backdrop

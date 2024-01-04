@@ -11,16 +11,21 @@ const CanvasModel = () => {
   // const obj = useLoader(OBJLoader, '/supastarOBJ.obj');
   const [rotateValue, setRotateValue] = useState({ x: 0, y: 0 });
 
-  const handleOnClickObject = (e) => {
-    console.log("handleOnClickObject", e)
-  }
+  let lastMouseX = 0;
+  let lastMouseY = 0;
 
-  const handleDragObject = (e) => {
-    console.log("handleDragObject", e)
+  const handleDragObject = (event) => {
+    console.log("handleDragObject", event)
+    lastMouseX = event.clientX;
+    lastMouseX = event.clientY;
+    const deltaX = event.clientX - lastMouseX;
+    const deltaY = event.clientY - lastMouseY;
     setRotateValue({
-      x: 5,
-      y: 5,
+      x: deltaX,
+      y: deltaY,
     });
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
   }
 
   return (
@@ -37,7 +42,7 @@ const CanvasModel = () => {
       <Backdrop />
       <CameraRig rotateValue={rotateValue}>
         <Center>
-          <VansShoe handleOnClickObject={handleOnClickObject} handleDragObject={handleDragObject} />
+          <VansShoe handleDragObject={handleDragObject} />
         </Center>
         {/* <primitive object={obj}/> */}
       </CameraRig>
