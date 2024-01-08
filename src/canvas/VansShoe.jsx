@@ -7,7 +7,7 @@ import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import state from '../store';
 
 const VansShoe = (props) => {
-  const { handleOnClickObject, handleDragObject } = props
+  const { handleHoldDownMouse, handleDragObject, handleOnPointerUp } = props
   const snap = useSnapshot(state);
   const { nodes, materials } = useGLTF('/vans_shoe.glb');
   const logoTexture = useTexture(snap.logoDecal);
@@ -19,7 +19,7 @@ const VansShoe = (props) => {
   const stateString = JSON.stringify(snap);
 
   return (
-    <group key={stateString} onPointerDown={e => handleDragObject(e)}>
+    <group key={stateString} onPointerUp={(e) => handleOnPointerUp(e)} onPointerDown={e => handleHoldDownMouse(e)} onPointerMove={e => handleDragObject(e)}>
       <mesh
         castShadow
         geometry={nodes.Shoe_VansShoeMaterial_0.geometry}
