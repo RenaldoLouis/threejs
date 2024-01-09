@@ -13,9 +13,6 @@ const CanvasModel = () => {
   const [rotateValue, setRotateValue] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
 
-  let lastMouseX = 0;
-  let lastMouseY = 0;
-
   const handleHoldDownMouse = (e) => {
     setIsDragging(true);
     setStartPosition({ x: e.clientX, y: e.clientY });
@@ -36,32 +33,14 @@ const CanvasModel = () => {
     const deltaX = newX - startPosition.x;
     const deltaY = newY - startPosition.y;
 
-    const positionX = (lastMouseX - deltaX) / 150;
-    const positionY = (lastMouseY - deltaY) / 150;
+    const positionX = (deltaX) / 150;
+    const positionY = (deltaY) / 150;
     setRotateValue({
       x: positionX,
       y: positionY,
     });
-
-    lastMouseX = positionX;
-    lastMouseY = positionY;
-
-    // console.log("handleDragObject", event)
-    // lastMouseX = event.clientX;
-    // lastMouseX = event.clientY;
-    // const deltaX = event.clientX - lastMouseX;
-    // const deltaY = event.clientY - lastMouseY;
-    // console.log("event.clientX", event.clientX)
-    // console.log("event.clientY", event.clientY)
-    // setRotateValue({
-    //   x: deltaX,
-    //   y: deltaY,
-    // });
-    // lastMouseX = event.clientX;
-    // lastMouseY = event.clientY;
   }
 
-  console.log("rotateValue", rotateValue)
   return (
     <Canvas
       id="scene"
