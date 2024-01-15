@@ -26,6 +26,7 @@ const VansShoe = (props) => {
         material={materials.VansShoeMaterial}
         material-roughness={1}
         dispose={null}
+      // rotation={[-Math.PI / 2, 0, 0]}
       >
         {snap.isFullTexture && (
           <Decal
@@ -47,6 +48,7 @@ const VansShoe = (props) => {
             depthWrite={true}
           />
         )}
+
       </mesh>
     </group>
   )

@@ -1,11 +1,12 @@
 import { Canvas } from '@react-three/fiber'
-import { Environment, Center } from '@react-three/drei';
+import { Environment, Center, OrbitControls } from '@react-three/drei';
 import React, { useState } from 'react'
 import { useLoader } from 'react-three-fiber';
 import CameraRig from './CameraRig';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import VansShoe from './VansShoe';
 import Backdrop from './Backdrop';
+import Chair from './Chair';
 
 const CanvasModel = () => {
   // const obj = useLoader(OBJLoader, '/supastarOBJ.obj');
@@ -14,12 +15,15 @@ const CanvasModel = () => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleHoldDownMouse = (e) => {
-    setIsDragging(true);
-    setStartPosition({ x: e.clientX, y: e.clientY });
+    if (!isDragging) {
+      setIsDragging(true);
+      setStartPosition({ x: e.clientX, y: e.clientY });
+    }
   }
 
   const handleOnPointerUp = () => {
     setIsDragging(false);
+
   }
 
   const handleDragObject = (event) => {
@@ -33,19 +37,26 @@ const CanvasModel = () => {
     const deltaX = newX - startPosition.x;
     const deltaY = newY - startPosition.y;
 
-    const positionX = (deltaX) / 150;
-    const positionY = (deltaY) / 150;
+    const positionX = (deltaX) / 100;
+    const positionY = (deltaY) / 100;
     setRotateValue({
       x: positionX,
       y: positionY,
     });
+
+    console.log("positionX", positionX)
+    console.log("positionY", positionY)
   }
+
 
   return (
     <Canvas
       id="scene"
       shadows
-      camera={{ position: [0, 0, 0], fov: 25 }}
+      camera={{
+        //  position: [0, 0, 0], 
+        fov: 25
+      }}
       gl={{ preserveDrawingBuffer: true }}
       className="w-full max-w-full h-full transition-all ease-in"
     >
@@ -57,7 +68,7 @@ const CanvasModel = () => {
         <Center>
           <VansShoe handleDragObject={handleDragObject} handleHoldDownMouse={handleHoldDownMouse} handleOnPointerUp={handleOnPointerUp} />
         </Center>
-        {/* <primitive object={obj}/> */}
+        {/* <OrbitControls enableZoom={true} autoRotate /> */}
       </CameraRig>
     </Canvas>
   )

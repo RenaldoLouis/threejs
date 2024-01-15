@@ -32,46 +32,6 @@ const CameraRig = (props) => {
     // Add scroll event listener
     window.addEventListener('wheel', handleScroll);
 
-    // //To Rotate Object
-    // // Variable to track mouse or touch movement
-    // let lastMouseX = 0;
-    // let lastMouseY = 0;
-
-    // function onMouseDown(event) {
-    //   lastMouseX = event.clientX;
-    //   lastMouseX = event.clientY;
-    //   window.addEventListener('mousemove', onMouseMove);
-    //   window.addEventListener('mouseup', onMouseUp);
-    // }
-
-    // function onMouseMove(event) {
-    //   const deltaX = event.clientX - lastMouseX;
-    //   const deltaY = event.clientY - lastMouseY;
-    //   // rotateObject(delta);
-    //   setRotateValue({
-    //     x: deltaX,
-    //     y: deltaY,
-    //   });
-    //   lastMouseX = event.clientX;
-    //   lastMouseY = event.clientY;
-    // }
-
-    // function onMouseUp() {
-    //   window.removeEventListener('mousemove', onMouseMove);
-    //   window.removeEventListener('mouseup', onMouseUp);
-    // }
-
-    // // // Function to rotate the object based on mouse movement
-    // // function rotateObject(delta) {
-    // //   // Adjust rotation speed based on mouse movement
-    // //   const speed = 0.01;
-    // //   // object.rotation.y += delta * speed; // Rotate the object on the Y-axis
-    // //   setRotateValue(rotateValue + delta * speed)
-    // // }
-
-    // // Add mouse down event listener
-    // window.addEventListener('mousedown', onMouseDown);
-
     // set the initial position of the model
     let targetPosition = [-0.4, 0, scrollValue];
     if (snap.intro) {
